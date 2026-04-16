@@ -53,3 +53,19 @@ body {
     margin-top: 1.5rem;
     font-weight: bold;
 }
+
+/* Limpieza para que no aparezcan scrolls internos */
+.prose p {
+    margin: 0 !important;
+}
+
+.prose ul, .prose ol {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* Forzar que el contenedor del chat sea el que tenga el scroll, no el mensaje */
+#chat-container {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(124, 58, 237, 0.3) transparent;
+}

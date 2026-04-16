@@ -114,15 +114,14 @@ function agregarMensajeAlChat(autor, texto, tipo) {
     const div = document.createElement('div');
     const esAI = tipo === 'ai';
     
-    div.className = `${esAI ? 'bg-white/5 ml-auto' : 'bg-violet-600/20 mr-auto'} border border-white/10 rounded-2xl p-5 max-w-[85%] glass-focus mb-4 animate-in fade-in slide-in-from-bottom-2 overflow-x-auto`;
+    // Quitamos 'overflow-x-auto' y ajustamos el padding
+    div.className = `${esAI ? 'bg-white/5 ml-auto' : 'bg-violet-600/20 mr-auto'} border border-white/10 rounded-2xl p-4 max-w-[85%] glass-focus mb-4 animate-in fade-in slide-in-from-bottom-2 w-fit`;
     
-    // Aquí es donde sucede la magia:
-    // Si es la IA, parseamos el Markdown. Si es el usuario, texto plano.
     const contenidoProcesado = esAI ? marked.parse(texto) : texto;
 
     div.innerHTML = `
-        <p class="${esAI ? 'text-aquamarine-400' : 'text-violet-400'} text-xs font-bold mb-1">${autor}</p>
-        <div class="prose prose-invert prose-sm max-w-none text-gray-200 leading-relaxed">
+        <p class="${esAI ? 'text-aquamarine-400' : 'text-violet-400'} text-[10px] font-bold mb-1 uppercase tracking-wider">${autor}</p>
+        <div class="prose prose-invert prose-sm max-w-none text-gray-200 leading-relaxed break-words">
             ${contenidoProcesado}
         </div>
     `;
