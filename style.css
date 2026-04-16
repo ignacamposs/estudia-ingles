@@ -24,3 +24,32 @@ body {
 .glass-focus:hover {
     border-color: rgba(127, 255, 212, 0.4);
 }
+
+/* Estilo para las tablas que genera la IA */
+.prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.prose th {
+    background: rgba(124, 58, 237, 0.2);
+    color: #7fffd4;
+    padding: 10px;
+    text-align: left;
+}
+
+.prose td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Para que los títulos no queden gigantes */
+.prose h3 {
+    color: #a78bfa; /* violet-400 */
+    margin-top: 1.5rem;
+    font-weight: bold;
+}
