@@ -65,7 +65,6 @@ function enviarConsulta() {
 }
 
 async function conectarConIA(mensajeUsuario) {
-    // Mostramos un indicador de carga simple
     const container = document.getElementById('chat-container');
     const loadingDiv = document.createElement('div');
     loadingDiv.id = "loading-ai";
@@ -74,20 +73,17 @@ async function conectarConIA(mensajeUsuario) {
     container.appendChild(loadingDiv);
 
     try {
-        const respuesta = await fetch("https://api.deepseek.com/v1/chat/completions", {
+        // Llamamos a nuestra propia API de Vercel
+        const respuesta = await fetch("/api/chat", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${API_KEY}`
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                model: "deepseek-chat",
                 messages: [
                     { 
                         role: "system", 
-                        content: "Sos un profesor de inglés para una chica de Buenos Aires. Usá ejemplos de café, gatos y vida cotidiana porteña. NO hables de código, programación ni finanzas. Si te pide tablas o comparaciones, usá etiquetas HTML <table> con clases de Tailwind (border, p-2, etc.). Respondé de forma concisa y con onda." 
+                        content: "Sos un profesor de inglés para una chica de Buenos Aires. Usá ejemplos de café, gatos y vida cotidiana porteña. NO hables de código ni finanzas. Usá HTML para tablas." 
                     },
-                    ...historial.map(h => ({ role: "user", content: h.user })), // Le damos memoria
+                    ...historial.map(h => ({ role: "user", content: h.user })),
                     { role: "user", content: mensajeUsuario }
                 ]
             })
@@ -96,19 +92,17 @@ async function conectarConIA(mensajeUsuario) {
         const data = await respuesta.json();
         const textoIA = data.choices[0].message.content;
         
-        // Quitar indicador de carga y mostrar respuesta
         document.getElementById('loading-ai').remove();
         agregarMensajeAlChat('Teacher AI', textoIA, 'ai');
 
-        // Guardar en historial
         historial.push({ user: mensajeUsuario, ai: textoIA });
-        if(historial.length > 10) historial.shift(); // Limitar memoria para no saturar la API
+        if(historial.length > 10) historial.shift();
         localStorage.setItem('historial_chat', JSON.stringify(historial));
 
     } catch (error) {
-        document.getElementById('loading-ai').remove();
+        if(document.getElementById('loading-ai')) document.getElementById('loading-ai').remove();
         console.error("Error:", error);
-        agregarMensajeAlChat('Teacher AI', "Perdón, se me cortó el Wi-Fi en el café. ¿Me repetís?", 'ai');
+        agregarMensajeAlChat('Teacher AI', "Perdón, se me cortó el Wi-Fi. ¿Me repetís?", 'ai');
     }
 }
 
