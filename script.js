@@ -73,16 +73,12 @@ async function conectarConIA(mensajeUsuario) {
     container.appendChild(loadingDiv);
 
     try {
-        // Llamamos a nuestra propia API de Vercel
         const respuesta = await fetch("/api/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 messages: [
-                    { 
-                        role: "system", 
-                        content: "Sos un profesor de inglés para una chica de Buenos Aires. Usá ejemplos de café, gatos y vida cotidiana porteña. NO hables de código ni finanzas. Usá HTML para tablas." 
-                    },
+                    { role: "system", content: "Sos un profesor de inglés..." },
                     ...historial.map(h => ({ role: "user", content: h.user })),
                     { role: "user", content: mensajeUsuario }
                 ]
@@ -90,6 +86,13 @@ async function conectarConIA(mensajeUsuario) {
         });
 
         const data = await respuesta.json();
+
+        // 🛡️ VALIDACIÓN: Si la API devuelve un error, lo atrapamos acá
+        if (data.error || !data.choices) {
+            console.error("Error de la IA:", data);
+            throw new Error(data.error?.message || "La IA no respondió correctamente");
+        }
+
         const textoIA = data.choices[0].message.content;
         
         document.getElementById('loading-ai').remove();
