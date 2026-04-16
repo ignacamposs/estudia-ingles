@@ -1,0 +1,26 @@
+body {
+    font-family: 'Funnel Display', sans-serif;
+    margin: 0;
+    /* Violeta profundo a Negro con toque Aquamarine */
+    background: radial-gradient(circle at top right, #2d1b4e 0%, #050a09 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Scrollbar sutil para no distraer */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(124, 58, 237, 0.3); border-radius: 10px; }
+
+.glass-focus {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.glass-focus:hover {
+    border-color: rgba(127, 255, 212, 0.4);
+}
