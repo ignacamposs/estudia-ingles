@@ -1,0 +1,23 @@
+{
+  "name": "estudia-ingles",
+  "version": "1.0.0",
+  "description": "Learn English with AI - Interactive English learning platform",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ignacamposs/estudia-ingles.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ignacamposs/estudia-ingles/issues"
+  },
+  "homepage": "https://github.com/ignacamposs/estudia-ingles#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
