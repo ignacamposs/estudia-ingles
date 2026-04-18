@@ -25,6 +25,11 @@ body {
     border-color: rgba(127, 255, 212, 0.4);
 }
 
+.prose {
+    background-color: transparent !important;
+    color: #e2e8f0 !important; /* Un gris claro para que se lea bien siempre */
+}
+
 .prose table {
     display: block; /* Necesario para que el overflow funcione */
     width: 100%;
@@ -65,7 +70,8 @@ body {
 
 /* Limpieza para que no aparezcan scrolls internos */
 .prose p {
-    margin: 0 !important;
+    background: transparent !important;
+    background-color: transparent !important;
 }
 
 .prose ul, .prose ol {
@@ -77,4 +83,9 @@ body {
 #chat-container {
     scrollbar-width: thin;
     scrollbar-color: rgba(124, 58, 237, 0.3) transparent;
+}
+
+[id^="msg-"] {
+    background-color: transparent !important;
+    -webkit-appearance: none;
 }
