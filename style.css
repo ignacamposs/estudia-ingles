@@ -25,26 +25,35 @@ body {
     border-color: rgba(127, 255, 212, 0.4);
 }
 
-/* Estilo para las tablas que genera la IA */
 .prose table {
+    display: block; /* Necesario para que el overflow funcione */
     width: 100%;
+    overflow-x: auto; /* Habilita el scroll horizontal */
+    -webkit-overflow-scrolling: touch; /* Suavidad en móviles */
     border-collapse: collapse;
     margin-top: 1rem;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 8px;
-    overflow: hidden;
+    white-space: nowrap; /* Evita que el texto se amontone, forzando el scroll */
 }
 
-.prose th {
-    background: rgba(124, 58, 237, 0.2);
-    color: #7fffd4;
-    padding: 10px;
-    text-align: left;
+/* Esto obliga a la tabla a tener su propio scroll lateral */
+.prose table {
+    display: block; /* Necesario para que el overflow funcione */
+    width: 100%;
+    overflow-x: auto; /* Habilita el scroll horizontal */
+    -webkit-overflow-scrolling: touch; /* Suavidad en móviles */
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    white-space: nowrap; /* Evita que el texto se amontone, forzando el scroll */
 }
 
-.prose td {
-    padding: 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+/* Para que las celdas no se vean pegadas */
+.prose th, .prose td {
+    min-width: 120px; /* Asegura que la tabla sea lo suficientemente ancha para scrollear */
+    padding: 10px 12px;
 }
 
 /* Para que los títulos no queden gigantes */
