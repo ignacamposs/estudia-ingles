@@ -85,7 +85,16 @@ body {
     scrollbar-color: rgba(124, 58, 237, 0.3) transparent;
 }
 
+/* Bloqueador de estilos intrusivos de iOS / Safari */
+.prose, 
+.prose *, 
 [id^="msg-"] {
     background-color: transparent !important;
-    -webkit-appearance: none;
+    background: transparent !important;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Específicamente para el iPhone */
+.glass-focus {
+    -webkit-backdrop-filter: blur(20px); /* Asegura que el blur funcione en iOS */
 }
